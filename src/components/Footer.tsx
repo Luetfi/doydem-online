@@ -14,7 +14,7 @@ const Footer = () => {
             <img
               src={doydemLogo}
               alt="Doydem Restaurant"
-              className="h-12 w-auto opacity-70 transition-opacity hover:opacity-100"
+              className="h-16 w-auto opacity-70 transition-opacity hover:opacity-100"
             />
           </Link>
 
