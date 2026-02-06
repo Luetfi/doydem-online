@@ -11,6 +11,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name ist erforderlich").max(100, "Name ist zu lang"),
+  email: z.string().trim().email("Ungültige E-Mail-Adresse").max(255, "E-Mail ist zu lang"),
+  phone: z.string().max(50, "Telefonnummer ist zu lang").optional(),
+  message: z.string().trim().min(1, "Nachricht ist erforderlich").max(2000, "Nachricht ist zu lang"),
+});
 
 const openingHours = [
   { day: "Montag", hours: "Geschlossen" },
@@ -31,21 +40,55 @@ const ContactSection = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+    
+    // Validate form data
+    const result = contactSchema.safeParse(formData);
+    if (!result.success) {
+      const fieldErrors: Record<string, string> = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0]) {
+          fieldErrors[err.path[0] as string] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const { error } = await supabase.functions.invoke("send-contact-email", {
+        body: {
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone?.trim() || undefined,
+          message: formData.message.trim(),
+        },
+      });
 
-    toast({
-      title: "Nachricht gesendet!",
-      description: "Wir werden uns so schnell wie möglich bei Ihnen melden.",
-    });
+      if (error) throw error;
 
-    setFormData({ name: "", email: "", phone: "", message: "" });
-    setIsSubmitting(false);
+      toast({
+        title: "Nachricht gesendet!",
+        description: "Wir werden uns so schnell wie möglich bei Ihnen melden.",
+      });
+
+      setFormData({ name: "", email: "", phone: "", message: "" });
+    } catch (error: any) {
+      console.error("Error sending contact form:", error);
+      toast({
+        title: "Fehler beim Senden",
+        description: "Bitte versuchen Sie es später erneut oder rufen Sie uns an.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -200,8 +243,9 @@ const ContactSection = () => {
                   onChange={handleChange}
                   placeholder="Ihr Name"
                   required
-                  className="bg-card"
+                  className={`bg-card ${errors.name ? "border-destructive" : ""}`}
                 />
+                {errors.name && <p className="text-sm text-destructive">{errors.name}</p>}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">E-Mail *</Label>
@@ -213,8 +257,9 @@ const ContactSection = () => {
                   onChange={handleChange}
                   placeholder="ihre@email.de"
                   required
-                  className="bg-card"
+                  className={`bg-card ${errors.email ? "border-destructive" : ""}`}
                 />
+                {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="phone">Telefon (optional)</Label>
@@ -238,8 +283,9 @@ const ContactSection = () => {
                   placeholder="Ihre Nachricht an uns..."
                   required
                   rows={4}
-                  className="bg-card"
+                  className={`bg-card ${errors.message ? "border-destructive" : ""}`}
                 />
+                {errors.message && <p className="text-sm text-destructive">{errors.message}</p>}
               </div>
               <Button
                 type="submit"
