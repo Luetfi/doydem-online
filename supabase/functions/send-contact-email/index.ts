@@ -36,6 +36,7 @@ const handler = async (req: Request): Promise<Response> => {
       throw new Error("Ungültige E-Mail-Adresse");
     }
 
+    // Send email to restaurant
     const emailResponse = await resend.emails.send({
       from: "Doydem Restaurant <noreply@doydem-restaurant.de>",
       to: ["info@doydem-restaurant.de"],
@@ -50,6 +51,33 @@ const handler = async (req: Request): Promise<Response> => {
       `,
       replyTo: email,
     });
+
+    // Send confirmation email to sender
+    const confirmationResponse = await resend.emails.send({
+      from: "Doydem Restaurant <noreply@doydem-restaurant.de>",
+      to: [email],
+      subject: "Vielen Dank für Ihre Nachricht - Doydem Restaurant",
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #333;">Vielen Dank für Ihre Nachricht!</h2>
+          <p>Liebe/r ${name},</p>
+          <p>wir haben Ihre Nachricht erhalten und werden uns so schnell wie möglich bei Ihnen melden.</p>
+          <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
+          <p><strong>Ihre Nachricht:</strong></p>
+          <p style="background: #f5f5f5; padding: 15px; border-radius: 5px;">${message.replace(/\n/g, "<br>")}</p>
+          <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
+          <p>Mit freundlichen Grüßen,<br/>Ihr Doydem Restaurant Team</p>
+          <p style="font-size: 12px; color: #666;">
+            Kaufpark Freiberg<br/>
+            Adalbert-Stifter-Straße 101<br/>
+            70437 Stuttgart<br/>
+            Tel: 0162 3254444
+          </p>
+        </div>
+      `,
+    });
+
+    console.log("Confirmation email sent:", confirmationResponse);
 
     console.log("Contact email sent successfully:", emailResponse);
 
