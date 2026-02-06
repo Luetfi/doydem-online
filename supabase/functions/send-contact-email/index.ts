@@ -1,7 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import { Resend } from "npm:resend@2.0.0";
 
-const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -16,8 +15,31 @@ interface ContactRequest {
   message: string;
 }
 
+async function sendEmail(payload: {
+  from: string;
+  to: string[];
+  subject: string;
+  html: string;
+  reply_to?: string;
+}) {
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${RESEND_API_KEY}`,
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    const error = await res.text();
+    throw new Error(`Resend API error: ${error}`);
+  }
+
+  return await res.json();
+}
+
 const handler = async (req: Request): Promise<Response> => {
-  // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
@@ -25,19 +47,16 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const { name, email, phone, message }: ContactRequest = await req.json();
 
-    // Validate required fields
     if (!name || !email || !message) {
       throw new Error("Name, E-Mail und Nachricht sind erforderlich");
     }
 
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       throw new Error("Ungültige E-Mail-Adresse");
     }
 
-    // Send email to restaurant
-    const emailResponse = await resend.emails.send({
+    const emailResponse = await sendEmail({
       from: "Doydem Restaurant <noreply@doydem-restaurant.de>",
       to: ["info@doydem-restaurant.de"],
       subject: `Neue Kontaktanfrage von ${name}`,
@@ -49,11 +68,12 @@ const handler = async (req: Request): Promise<Response> => {
         <p><strong>Nachricht:</strong></p>
         <p>${message.replace(/\n/g, "<br>")}</p>
       `,
-      replyTo: email,
+      reply_to: email,
     });
 
-    // Send confirmation email to sender
-    const confirmationResponse = await resend.emails.send({
+    console.log("Contact email sent:", emailResponse);
+
+    const confirmationResponse = await sendEmail({
       from: "Doydem Restaurant <noreply@doydem-restaurant.de>",
       to: [email],
       subject: "Vielen Dank für Ihre Nachricht - Doydem Restaurant",
@@ -79,14 +99,9 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Confirmation email sent:", confirmationResponse);
 
-    console.log("Contact email sent successfully:", emailResponse);
-
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
-      headers: {
-        "Content-Type": "application/json",
-        ...corsHeaders,
-      },
+      headers: { "Content-Type": "application/json", ...corsHeaders },
     });
   } catch (error: any) {
     console.error("Error in send-contact-email function:", error);
