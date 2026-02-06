@@ -2,9 +2,29 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import doydemLogo from "@/assets/doydem-logo.png";
 import { Button } from "@/components/ui/button";
-import { Menu, X, PhoneCall } from "lucide-react";
+import { Menu, X, PhoneCall, ExternalLink, ChevronDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-const LIEFERANDO_URL = "https://www.lieferando.de/speisekarte/doydem?utm_source=google&utm_medium=cpc&utm_campaign=CM_S_G_DEU_DE_%5BRES%5D_%5BENGM%5D_LH_National&utm_campaignid=21814098866&gad_source=1&gad_campaignid=21814098866&gbraid=0AAAAAD3ULIX8aq05AVwXmW7SyRCteojvm&gclid=Cj0KCQiAnJHMBhDAARIsABr7b86sF3UU24rPX3l8XDCyl3eW0UCnOrkpzzhNSjPBZaU4DkyAAq4OaS0aAmFfEALw_wcB#pre-order";
+const DELIVERY_SERVICES = [
+  {
+    name: "Lieferando",
+    url: "https://www.lieferando.de/speisekarte/doydem",
+  },
+  {
+    name: "Uber Eats",
+    url: "https://www.ubereats.com/de/store/restaurant-doydem/8GcqO8fZSn-50n6Mgj4Gbg",
+  },
+  {
+    name: "Wolt",
+    url: "https://wolt.com/de/deu/stuttgart/restaurant/doydem",
+  },
+];
+
 const PHONE_NUMBER = "tel:01623254444";
 
 const Header = () => {
@@ -16,7 +36,6 @@ const Header = () => {
     setIsMenuOpen(false);
     
     if (location.pathname !== "/") {
-      // Navigate to home page with hash, then scroll
       navigate(`/#${id}`);
     } else {
       const element = document.getElementById(id);
@@ -51,14 +70,30 @@ const Header = () => {
           >
             Galerie
           </Link>
-          <a
-            href={LIEFERANDO_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-muted-foreground transition-colors hover:text-primary"
-          >
-            Bestellen
-          </a>
+          
+          {/* Bestellen Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-primary">
+              Bestellen
+              <ChevronDown className="h-3 w-3" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="z-50 min-w-[160px] bg-popover">
+              {DELIVERY_SERVICES.map((service) => (
+                <DropdownMenuItem key={service.name} asChild>
+                  <a
+                    href={service.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex w-full cursor-pointer items-center gap-2"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    {service.name}
+                  </a>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+          
           <button
             onClick={() => scrollToSection("kontakt")}
             className="text-sm text-muted-foreground transition-colors hover:text-primary"
@@ -104,14 +139,24 @@ const Header = () => {
             >
               Galerie
             </Link>
-            <a
-              href={LIEFERANDO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-left text-muted-foreground transition-colors hover:text-primary"
-            >
-              Bestellen
-            </a>
+            
+            {/* Mobile Bestellen Links */}
+            <div className="flex flex-col gap-2 pl-2 border-l-2 border-primary/20">
+              <span className="text-sm font-medium text-foreground">Bestellen via:</span>
+              {DELIVERY_SERVICES.map((service) => (
+                <a
+                  key={service.name}
+                  href={service.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  {service.name}
+                </a>
+              ))}
+            </div>
+            
             <button
               onClick={() => scrollToSection("kontakt")}
               className="text-left text-muted-foreground transition-colors hover:text-primary"
