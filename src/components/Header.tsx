@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import doydemLogo from "@/assets/doydem-logo.png";
 import { Button } from "@/components/ui/button";
-import { Menu, X, PhoneCall, ExternalLink, ChevronDown } from "lucide-react";
+import { Menu, X, PhoneCall, ExternalLink, ChevronDown, Instagram } from "lucide-react";
 
 const DELIVERY_SERVICES = [
   {
@@ -103,6 +103,15 @@ const Header = () => {
           >
             Kontakt
           </button>
+          <a
+            href="https://www.instagram.com/doydem_stgt/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground transition-colors hover:text-primary"
+            aria-label="Instagram"
+          >
+            <Instagram className="h-5 w-5" />
+          </a>
           <Button
             asChild
             size="sm"
