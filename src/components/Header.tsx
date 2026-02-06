@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import doydemLogo from "@/assets/doydem-logo-small.png";
+import doydemLogo from "@/assets/doydem-logo.png";
 import { Button } from "@/components/ui/button";
 import { Menu, X, PhoneCall, ExternalLink, ChevronDown, Instagram } from "lucide-react";
 
