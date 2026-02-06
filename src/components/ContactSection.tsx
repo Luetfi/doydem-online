@@ -298,6 +298,34 @@ const ContactSection = () => {
             </form>
           </div>
         </div>
+
+        {/* Google Maps */}
+        <div className="mt-12">
+          <div className="overflow-hidden rounded-lg border border-border">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.8477647989514!2d9.163547776891977!3d48.83826097132985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4799da3c13c77777%3A0x7f3a4b4b4b4b4b4b!2sAdalbert-Stifter-Stra%C3%9Fe%20101%2C%2070437%20Stuttgart!5e0!3m2!1sde!2sde!4v1699999999999!5m2!1sde!2sde"
+              width="100%"
+              height="400"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Doydem Restaurant Standort"
+              className="w-full"
+            />
+          </div>
+          <p className="mt-3 text-center text-sm text-muted-foreground">
+            <a
+              href="https://www.google.com/maps/dir//Adalbert-Stifter-Stra%C3%9Fe+101,+70437+Stuttgart"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-primary hover:underline"
+            >
+              <MapPin className="h-4 w-4" />
+              Route in Google Maps öffnen
+            </a>
+          </p>
+        </div>
       </div>
     </section>
   );
