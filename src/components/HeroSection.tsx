@@ -32,10 +32,10 @@ const HeroSection = () => {
           className="mb-8 h-40 w-auto drop-shadow-2xl md:h-56 lg:h-72"
         />
 
-        {/* Tagline */}
-        <p className="mb-8 text-center text-lg text-foreground/80 md:text-xl">
+        {/* H1 for SEO */}
+        <h1 className="mb-8 text-center text-lg font-normal text-foreground/80 md:text-xl">
           Authentische türkische Küche in Stuttgart
-        </p>
+        </h1>
 
         {/* CTA Buttons */}
         <div className="flex flex-col gap-4 sm:flex-row">
