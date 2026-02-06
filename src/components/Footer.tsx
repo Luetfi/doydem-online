@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Instagram } from "lucide-react";
 import doydemLogo from "@/assets/doydem-logo.png";
 
 const Footer = () => {
@@ -17,21 +18,36 @@ const Footer = () => {
             />
           </Link>
 
-          {/* Legal Links */}
-          <nav className="flex items-center gap-6">
-            <Link
-              to="/impressum"
-              className="text-sm text-muted-foreground transition-colors hover:text-primary"
+          {/* Social & Legal Links */}
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
+            {/* Instagram */}
+            <a
+              href="https://www.instagram.com/doydem_stgt/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
+              aria-label="Instagram"
             >
-              Impressum
-            </Link>
-            <Link
-              to="/datenschutz"
-              className="text-sm text-muted-foreground transition-colors hover:text-primary"
-            >
-              Datenschutz
-            </Link>
-          </nav>
+              <Instagram className="h-5 w-5" />
+              <span className="text-sm">@doydem_stgt</span>
+            </a>
+
+            {/* Legal Links */}
+            <nav className="flex items-center gap-6">
+              <Link
+                to="/impressum"
+                className="text-sm text-muted-foreground transition-colors hover:text-primary"
+              >
+                Impressum
+              </Link>
+              <Link
+                to="/datenschutz"
+                className="text-sm text-muted-foreground transition-colors hover:text-primary"
+              >
+                Datenschutz
+              </Link>
+            </nav>
+          </div>
         </div>
 
         {/* Copyright */}
