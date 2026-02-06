@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import doydemLogo from "@/assets/doydem-logo.png";
 import { Button } from "@/components/ui/button";
 import { Menu, X, PhoneCall } from "lucide-react";
@@ -9,13 +9,21 @@ const PHONE_NUMBER = "tel:01623254444";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
     setIsMenuOpen(false);
+    
+    if (location.pathname !== "/") {
+      // Navigate to home page with hash, then scroll
+      navigate(`/#${id}`);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   return (
