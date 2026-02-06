@@ -3,12 +3,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import doydemLogo from "@/assets/doydem-logo.png";
 import { Button } from "@/components/ui/button";
 import { Menu, X, PhoneCall, ExternalLink, ChevronDown } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 const DELIVERY_SERVICES = [
   {
@@ -29,6 +23,7 @@ const PHONE_NUMBER = "tel:01623254444";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isOrderDropdownOpen, setIsOrderDropdownOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -71,28 +66,36 @@ const Header = () => {
             Galerie
           </Link>
           
-          {/* Bestellen Dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-primary">
+          {/* Bestellen Hover Dropdown */}
+          <div 
+            className="relative"
+            onMouseEnter={() => setIsOrderDropdownOpen(true)}
+            onMouseLeave={() => setIsOrderDropdownOpen(false)}
+          >
+            <button className="flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-primary">
               Bestellen
-              <ChevronDown className="h-3 w-3" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="z-50 min-w-[160px] bg-popover">
-              {DELIVERY_SERVICES.map((service) => (
-                <DropdownMenuItem key={service.name} asChild>
-                  <a
-                    href={service.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex w-full cursor-pointer items-center gap-2"
-                  >
-                    <ExternalLink className="h-4 w-4" />
-                    {service.name}
-                  </a>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+              <ChevronDown className={`h-3 w-3 transition-transform ${isOrderDropdownOpen ? 'rotate-180' : ''}`} />
+            </button>
+            
+            {isOrderDropdownOpen && (
+              <div className="absolute left-0 top-full pt-2">
+                <div className="min-w-[160px] rounded-md border border-border bg-popover p-1 shadow-lg">
+                  {DELIVERY_SERVICES.map((service) => (
+                    <a
+                      key={service.name}
+                      href={service.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex w-full items-center gap-2 rounded-sm px-3 py-2 text-sm text-popover-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      {service.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
           
           <button
             onClick={() => scrollToSection("kontakt")}
