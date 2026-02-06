@@ -45,7 +45,7 @@ const HeroSection = () => {
         <img
           src={doydemLogo}
           alt="Doydem Restaurant Logo"
-          className="mb-8 h-40 w-auto drop-shadow-2xl md:h-56 lg:h-72"
+          className="mb-8 h-52 w-auto drop-shadow-2xl md:h-72 lg:h-96"
         />
 
         {/* H1 for SEO */}
