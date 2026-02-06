@@ -1,7 +1,26 @@
 import { Button } from "@/components/ui/button";
-import { ExternalLink, FileText } from "lucide-react";
+import { ExternalLink, FileText, ChevronDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-const LIEFERANDO_URL = "https://www.lieferando.de/speisekarte/doydem?utm_source=google&utm_medium=cpc&utm_campaign=CM_S_G_DEU_DE_%5BRES%5D_%5BENGM%5D_LH_National&utm_campaignid=21814098866&gad_source=1&gad_campaignid=21814098866&gbraid=0AAAAAD3ULIX8aq05AVwXmW7SyRCteojvm&gclid=Cj0KCQiAnJHMBhDAARIsABr7b86sF3UU24rPX3l8XDCyl3eW0UCnOrkpzzhNSjPBZaU4DkyAAq4OaS0aAmFfEALw_wcB#pre-order";
+const DELIVERY_SERVICES = [
+  {
+    name: "Lieferando",
+    url: "https://www.lieferando.de/speisekarte/doydem",
+  },
+  {
+    name: "Uber Eats",
+    url: "https://www.ubereats.com/de/store/restaurant-doydem/8GcqO8fZSn-50n6Mgj4Gbg",
+  },
+  {
+    name: "Wolt",
+    url: "https://wolt.com/de/deu/stuttgart/restaurant/doydem",
+  },
+];
 
 const MenuSection = () => {
   return (
@@ -28,16 +47,34 @@ const MenuSection = () => {
               Speisekarte ansehen
             </a>
           </Button>
-          <Button
-            asChild
-            size="lg"
-            className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
-          >
-            <a href={LIEFERANDO_URL} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="h-5 w-5" />
-              Online bestellen
-            </a>
-          </Button>
+          
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                size="lg"
+                className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
+              >
+                <ExternalLink className="h-5 w-5" />
+                Online bestellen
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="z-50 min-w-[180px] bg-popover">
+              {DELIVERY_SERVICES.map((service) => (
+                <DropdownMenuItem key={service.name} asChild>
+                  <a
+                    href={service.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex w-full cursor-pointer items-center gap-2 px-3 py-2"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    {service.name}
+                  </a>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </section>
