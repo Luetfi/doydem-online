@@ -9,9 +9,7 @@ import salad from "@/assets/gallery/salad.jpeg";
 import meatRice1 from "@/assets/gallery/meat-rice-1.jpeg";
 import meatRice2 from "@/assets/gallery/meat-rice-2.jpeg";
 import burger1 from "@/assets/gallery/burger-1.jpeg";
-import burger2 from "@/assets/gallery/burger-2.jpeg";
 import burger3 from "@/assets/gallery/burger-3.jpeg";
-import burgerCollage from "@/assets/gallery/burger-collage.jpeg";
 import meze from "@/assets/gallery/meze.jpeg";
 
 const galleryImages = [
@@ -19,10 +17,8 @@ const galleryImages = [
   { src: salad, alt: "Frischer Salat" },
   { src: meatRice1, alt: "Fleischgericht mit Reis" },
   { src: meze, alt: "Meze Platte" },
-  { src: burger2, alt: "Hausgemachter Burger" },
   { src: meatRice2, alt: "Türkisches Fleischgericht" },
   { src: burger3, alt: "Gourmet Burger" },
-  { src: burgerCollage, alt: "Burger Auswahl" },
 ];
 
 const Galerie = () => {
