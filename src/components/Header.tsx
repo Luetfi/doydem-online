@@ -2,9 +2,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import doydemLogo from "@/assets/doydem-logo.png";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ExternalLink } from "lucide-react";
+import { Menu, X, PhoneCall } from "lucide-react";
 
 const LIEFERANDO_URL = "https://www.lieferando.de/speisekarte/doydem?utm_source=google&utm_medium=cpc&utm_campaign=CM_S_G_DEU_DE_%5BRES%5D_%5BENGM%5D_LH_National&utm_campaignid=21814098866&gad_source=1&gad_campaignid=21814098866&gbraid=0AAAAAD3ULIX8aq05AVwXmW7SyRCteojvm&gclid=Cj0KCQiAnJHMBhDAARIsABr7b86sF3UU24rPX3l8XDCyl3eW0UCnOrkpzzhNSjPBZaU4DkyAAq4OaS0aAmFfEALw_wcB#pre-order";
+const PHONE_NUMBER = "tel:01623254444";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,7 +30,6 @@ const Header = () => {
           />
         </Link>
 
-        {/* Desktop Navigation */}
         <nav className="hidden items-center gap-6 md:flex">
           <button
             onClick={() => scrollToSection("speisekarte")}
@@ -37,6 +37,14 @@ const Header = () => {
           >
             Speisekarte
           </button>
+          <a
+            href={LIEFERANDO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-muted-foreground transition-colors hover:text-primary"
+          >
+            Bestellen
+          </a>
           <button
             onClick={() => scrollToSection("kontakt")}
             className="text-sm text-muted-foreground transition-colors hover:text-primary"
@@ -48,9 +56,9 @@ const Header = () => {
             size="sm"
             className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
           >
-            <a href={LIEFERANDO_URL} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="h-4 w-4" />
-              Bestellen
+            <a href={PHONE_NUMBER}>
+              <PhoneCall className="h-4 w-4" />
+              Reservieren
             </a>
           </Button>
         </nav>
@@ -75,6 +83,14 @@ const Header = () => {
             >
               Speisekarte
             </button>
+            <a
+              href={LIEFERANDO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-left text-muted-foreground transition-colors hover:text-primary"
+            >
+              Bestellen
+            </a>
             <button
               onClick={() => scrollToSection("kontakt")}
               className="text-left text-muted-foreground transition-colors hover:text-primary"
@@ -85,9 +101,9 @@ const Header = () => {
               asChild
               className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
             >
-              <a href={LIEFERANDO_URL} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="h-4 w-4" />
-                Jetzt bestellen
+              <a href={PHONE_NUMBER}>
+                <PhoneCall className="h-4 w-4" />
+                Reservieren
               </a>
             </Button>
           </div>
