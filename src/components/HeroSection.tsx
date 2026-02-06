@@ -1,9 +1,10 @@
 import heroVideo from "@/assets/hero-video.mp4";
 import doydemLogo from "@/assets/doydem-logo.png";
 import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, PhoneCall } from "lucide-react";
 
 const LIEFERANDO_URL = "https://www.lieferando.de/speisekarte/doydem?utm_source=google&utm_medium=cpc&utm_campaign=CM_S_G_DEU_DE_%5BRES%5D_%5BENGM%5D_LH_National&utm_campaignid=21814098866&gad_source=1&gad_campaignid=21814098866&gbraid=0AAAAAD3ULIX8aq05AVwXmW7SyRCteojvm&gclid=Cj0KCQiAnJHMBhDAARIsABr7b86sF3UU24rPX3l8XDCyl3eW0UCnOrkpzzhNSjPBZaU4DkyAAq4OaS0aAmFfEALw_wcB#pre-order";
+const PHONE_NUMBER = "tel:01623254444";
 
 const HeroSection = () => {
   return (
@@ -36,17 +37,30 @@ const HeroSection = () => {
           Authentische türkische Küche in Stuttgart
         </p>
 
-        {/* CTA Button */}
-        <Button
-          asChild
-          size="lg"
-          className="gap-2 bg-primary px-8 py-6 text-lg font-semibold text-primary-foreground shadow-lg transition-all hover:scale-105 hover:bg-primary/90 hover:shadow-primary/25"
-        >
-          <a href={LIEFERANDO_URL} target="_blank" rel="noopener noreferrer">
-            <ExternalLink className="h-5 w-5" />
-            Jetzt bestellen
-          </a>
-        </Button>
+        {/* CTA Buttons */}
+        <div className="flex flex-col gap-4 sm:flex-row">
+          <Button
+            asChild
+            size="lg"
+            className="gap-2 bg-primary px-8 py-6 text-lg font-semibold text-primary-foreground shadow-lg transition-all hover:scale-105 hover:bg-primary/90 hover:shadow-primary/25"
+          >
+            <a href={LIEFERANDO_URL} target="_blank" rel="noopener noreferrer">
+              <ExternalLink className="h-5 w-5" />
+              Jetzt bestellen
+            </a>
+          </Button>
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="gap-2 border-primary/50 px-8 py-6 text-lg font-semibold text-primary shadow-lg transition-all hover:scale-105 hover:bg-primary/10 hover:border-primary"
+          >
+            <a href={PHONE_NUMBER}>
+              <PhoneCall className="h-5 w-5" />
+              Reservieren
+            </a>
+          </Button>
+        </div>
       </div>
 
       {/* Scroll Indicator */}
