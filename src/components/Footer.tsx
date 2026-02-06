@@ -29,7 +29,6 @@ const Footer = () => {
               aria-label="Instagram"
             >
               <Instagram className="h-5 w-5" />
-              <span className="text-sm">@doydem_stgt</span>
             </a>
 
             {/* Legal Links */}
