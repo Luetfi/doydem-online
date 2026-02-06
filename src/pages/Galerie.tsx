@@ -11,13 +11,14 @@ import meatRice1 from "@/assets/gallery/meat-rice-1.jpeg";
 import burger1 from "@/assets/gallery/burger-1.jpeg";
 import burger3 from "@/assets/gallery/burger-3.jpeg";
 import meze from "@/assets/gallery/meze.jpeg";
+import burgerMenu from "@/assets/gallery/burger-menu.jpeg";
 
 const galleryImages = [
   { src: burger1, alt: "Doydem Burger" },
   { src: salad, alt: "Frischer Salat" },
   { src: meatRice1, alt: "Fleischgericht mit Reis" },
   { src: meze, alt: "Meze Platte" },
-  
+  { src: burgerMenu, alt: "Burger Menü mit Pommes" },
   { src: burger3, alt: "Gourmet Burger" },
 ];
 
