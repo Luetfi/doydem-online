@@ -18,13 +18,15 @@ const MenuSection = () => {
         {/* Action Buttons */}
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Button
+            asChild
             variant="outline"
             size="lg"
             className="gap-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-            disabled
           >
-            <FileText className="h-5 w-5" />
-            Speisekarte (PDF kommt bald)
+            <a href="/speisekarte.pdf" target="_blank" rel="noopener noreferrer">
+              <FileText className="h-5 w-5" />
+              Speisekarte ansehen
+            </a>
           </Button>
           <Button
             asChild
