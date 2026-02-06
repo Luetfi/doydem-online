@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -14,12 +15,12 @@ import meze from "@/assets/gallery/meze.jpeg";
 import burgerMenu from "@/assets/gallery/burger-menu.jpeg";
 
 const galleryImages = [
-  { src: burger1, alt: "Doydem Burger" },
-  { src: salad, alt: "Frischer Salat" },
-  { src: meatRice1, alt: "Fleischgericht mit Reis" },
-  { src: meze, alt: "Meze Platte" },
-  { src: burgerMenu, alt: "Burger Menü mit Pommes" },
-  { src: burger3, alt: "Gourmet Burger" },
+  { src: burger1, alt: "Türkischer Burger im Doydem Restaurant Stuttgart" },
+  { src: salad, alt: "Frischer Salat – gesunde türkische Küche in Stuttgart" },
+  { src: meatRice1, alt: "Gegrilltes Fleisch mit Reis – türkisches Gericht Stuttgart" },
+  { src: meze, alt: "Meze Platte – türkische Vorspeisen im Restaurant Doydem Stuttgart" },
+  { src: burgerMenu, alt: "Burger Menü mit Pommes – Doydem Restaurant Stuttgart" },
+  { src: burger3, alt: "Gourmet Burger – Doydem türkisches Restaurant Stuttgart" },
 ];
 
 const Galerie = () => {
@@ -27,14 +28,23 @@ const Galerie = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Galerie – Doydem Restaurant Stuttgart | Türkische Küche Bilder</title>
+        <meta name="description" content="Bildergalerie vom Doydem Restaurant in Stuttgart. Entdecken Sie unsere türkischen Gerichte: Kebab, Meze, Burger & Grillspezialitäten – frisch zubereitet!" />
+        <link rel="canonical" href="https://doydem-restaurant.de/galerie" />
+        <meta property="og:title" content="Galerie – Doydem Restaurant Stuttgart" />
+        <meta property="og:description" content="Bildergalerie vom Doydem Restaurant in Stuttgart. Türkische Gerichte: Kebab, Meze, Burger & Grillspezialitäten." />
+        <meta property="og:url" content="https://doydem-restaurant.de/galerie" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <Header />
       <main className="px-4 pb-20 pt-32">
         <div className="mx-auto max-w-6xl">
           <h1 className="mb-4 text-center text-3xl font-bold text-primary md:text-4xl">
-            Galerie
+            Galerie – Unsere türkischen Spezialitäten
           </h1>
           <p className="mx-auto mb-12 max-w-2xl text-center text-muted-foreground">
-            Einblicke in unsere kulinarischen Kreationen – authentische türkische Küche, frisch zubereitet.
+            Einblicke in unsere kulinarischen Kreationen – authentische türkische Küche in Stuttgart, frisch zubereitet mit Liebe und Tradition.
           </p>
 
           {/* Gallery Grid */}
@@ -72,7 +82,7 @@ const Galerie = () => {
           {selectedImage && (
             <img
               src={selectedImage}
-              alt="Vergrößerte Ansicht"
+              alt="Vergrößerte Ansicht – Doydem Restaurant Stuttgart"
               className="max-h-[80vh] w-full rounded-lg object-contain"
             />
           )}

@@ -1,9 +1,16 @@
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const Impressum = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Impressum – Doydem Restaurant Stuttgart</title>
+        <meta name="description" content="Impressum des Doydem Restaurants in Stuttgart. Angaben gemäß § 5 TMG, Kontaktinformationen und rechtliche Hinweise." />
+        <link rel="canonical" href="https://doydem-restaurant.de/impressum" />
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
       <Header />
       <main className="px-4 pb-20 pt-32">
         <div className="mx-auto max-w-3xl">

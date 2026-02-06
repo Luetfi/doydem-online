@@ -28,10 +28,10 @@ const MenuSection = () => {
       <div className="mx-auto max-w-3xl text-center">
         {/* Section Header */}
         <h2 className="mb-4 text-3xl font-bold text-primary md:text-4xl">
-          Speisekarte
+          Unsere Speisekarte
         </h2>
         <p className="mb-10 text-muted-foreground">
-          Entdecke unsere authentische türkische Küche – von traditionellen Kebabs bis zu hausgemachten Meze.
+          Entdecke unsere authentische türkische Küche in Stuttgart – von traditionellen Kebabs über hausgemachte Meze bis hin zu Grillspezialitäten.
         </p>
 
         {/* Action Buttons */}

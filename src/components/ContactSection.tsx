@@ -106,10 +106,10 @@ const ContactSection = () => {
         {/* Section Header */}
         <div className="mb-10 text-center">
           <h2 className="mb-3 text-3xl font-bold text-primary md:text-4xl">
-            Kontakt & Standort
+            Kontakt & Standort in Stuttgart
           </h2>
           <p className="text-muted-foreground">
-            Besuche uns im Kaufpark Freiberg
+            Besuchen Sie uns im Kaufpark Freiberg – Ihr türkisches Restaurant in Stuttgart-Nord
           </p>
         </div>
 
