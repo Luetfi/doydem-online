@@ -37,7 +37,7 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     const emailResponse = await resend.emails.send({
-      from: "Doydem Website <onboarding@resend.dev>",
+      from: "Doydem Restaurant <noreply@doydem-restaurant.de>",
       to: ["info@doydem-restaurant.de"],
       subject: `Neue Kontaktanfrage von ${name}`,
       html: `
