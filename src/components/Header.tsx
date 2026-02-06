@@ -45,6 +45,12 @@ const Header = () => {
           >
             Speisekarte
           </button>
+          <Link
+            to="/galerie"
+            className="text-sm text-muted-foreground transition-colors hover:text-primary"
+          >
+            Galerie
+          </Link>
           <a
             href={LIEFERANDO_URL}
             target="_blank"
@@ -91,6 +97,13 @@ const Header = () => {
             >
               Speisekarte
             </button>
+            <Link
+              to="/galerie"
+              onClick={() => setIsMenuOpen(false)}
+              className="text-left text-muted-foreground transition-colors hover:text-primary"
+            >
+              Galerie
+            </Link>
             <a
               href={LIEFERANDO_URL}
               target="_blank"
