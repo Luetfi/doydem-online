@@ -32,8 +32,6 @@ const Datenschutz = () => {
               <p className="text-muted-foreground">
                 Doydem Restaurant
                 <br />
-                Kaufpark Freiberg
-                <br />
                 Adalbert-Stifter-Straße 101
                 <br />
                 70437 Stuttgart
