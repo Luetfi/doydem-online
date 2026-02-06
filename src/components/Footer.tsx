@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Instagram } from "lucide-react";
-import doydemLogo from "@/assets/doydem-logo.png";
+import doydemLogo from "@/assets/doydem-logo-small.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
