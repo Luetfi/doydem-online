@@ -7,7 +7,7 @@ import { X } from "lucide-react";
 // Gallery images
 import salad from "@/assets/gallery/salad.jpeg";
 import meatRice1 from "@/assets/gallery/meat-rice-1.jpeg";
-import meatRice2 from "@/assets/gallery/meat-rice-2.jpeg";
+
 import burger1 from "@/assets/gallery/burger-1.jpeg";
 import burger3 from "@/assets/gallery/burger-3.jpeg";
 import meze from "@/assets/gallery/meze.jpeg";
@@ -17,7 +17,7 @@ const galleryImages = [
   { src: salad, alt: "Frischer Salat" },
   { src: meatRice1, alt: "Fleischgericht mit Reis" },
   { src: meze, alt: "Meze Platte" },
-  { src: meatRice2, alt: "Türkisches Fleischgericht" },
+  
   { src: burger3, alt: "Gourmet Burger" },
 ];
 
