@@ -101,11 +101,11 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="bg-card px-4 py-20">
+    <section className="bg-card px-4 py-16 md:py-20">
       <div className="mx-auto max-w-6xl">
         {/* Section Header */}
-        <div className="mb-12 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-primary md:text-4xl">
+        <div className="mb-10 text-center">
+          <h2 className="mb-3 text-3xl font-bold text-primary md:text-4xl">
             Kontakt & Standort
           </h2>
           <p className="text-muted-foreground">
@@ -114,11 +114,11 @@ const ContactSection = () => {
         </div>
 
         {/* Reservation CTA */}
-        <div className="mb-12 rounded-lg border border-primary/30 bg-primary/5 p-6 text-center md:p-8">
-          <h3 className="mb-3 text-2xl font-bold text-foreground">
+        <div className="mb-10 rounded-lg border border-primary/30 bg-primary/5 p-5 text-center md:p-6">
+          <h3 className="mb-2 text-xl font-bold text-foreground md:text-2xl">
             Tisch reservieren
           </h3>
-          <p className="mb-6 text-muted-foreground">
+          <p className="mb-4 text-sm text-muted-foreground">
             Für Reservierungen rufen Sie uns einfach an – wir freuen uns auf
             Ihren Besuch!
           </p>
@@ -134,19 +134,19 @@ const ContactSection = () => {
           </Button>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid gap-6 lg:grid-cols-2">
           {/* Left Column: Contact Info + Opening Hours */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             {/* Contact Info */}
-            <div className="space-y-6">
+            <div className="space-y-4">
               {/* Address */}
-              <div className="flex items-start gap-4">
-                <div className="rounded-full bg-primary/10 p-3">
-                  <MapPin className="h-6 w-6 text-primary" />
+              <div className="flex items-start gap-3">
+                <div className="rounded-full bg-primary/10 p-2.5">
+                  <MapPin className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="mb-1 font-semibold text-foreground">Adresse</h3>
-                  <p className="text-muted-foreground">
+                  <h3 className="mb-0.5 text-sm font-semibold text-foreground">Adresse</h3>
+                  <p className="text-sm text-muted-foreground">
                     Kaufpark Freiberg
                     <br />
                     Adalbert-Stifter-Straße 101
@@ -157,15 +157,15 @@ const ContactSection = () => {
               </div>
 
               {/* Phone */}
-              <div className="flex items-start gap-4">
-                <div className="rounded-full bg-primary/10 p-3">
-                  <Phone className="h-6 w-6 text-primary" />
+              <div className="flex items-start gap-3">
+                <div className="rounded-full bg-primary/10 p-2.5">
+                  <Phone className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="mb-1 font-semibold text-foreground">Telefon</h3>
+                  <h3 className="mb-0.5 text-sm font-semibold text-foreground">Telefon</h3>
                   <a
                     href="tel:01623254444"
-                    className="text-muted-foreground transition-colors hover:text-primary"
+                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
                   >
                     0162 3254444
                   </a>
@@ -173,15 +173,15 @@ const ContactSection = () => {
               </div>
 
               {/* Email */}
-              <div className="flex items-start gap-4">
-                <div className="rounded-full bg-primary/10 p-3">
-                  <Mail className="h-6 w-6 text-primary" />
+              <div className="flex items-start gap-3">
+                <div className="rounded-full bg-primary/10 p-2.5">
+                  <Mail className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="mb-1 font-semibold text-foreground">E-Mail</h3>
+                  <h3 className="mb-0.5 text-sm font-semibold text-foreground">E-Mail</h3>
                   <a
                     href="mailto:info@doydem-restaurant.de"
-                    className="text-muted-foreground transition-colors hover:text-primary"
+                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
                   >
                     info@doydem-restaurant.de
                   </a>
@@ -190,12 +190,12 @@ const ContactSection = () => {
             </div>
 
             {/* Opening Hours */}
-            <div className="rounded-lg border border-border bg-background p-6">
-              <div className="mb-4 flex items-center gap-3">
-                <div className="rounded-full bg-primary/10 p-3">
-                  <Clock className="h-6 w-6 text-primary" />
+            <div className="rounded-lg border border-border bg-background p-4">
+              <div className="mb-3 flex items-center gap-2.5">
+                <div className="rounded-full bg-primary/10 p-2.5">
+                  <Clock className="h-5 w-5 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground">
+                <h3 className="text-lg font-semibold text-foreground">
                   Öffnungszeiten
                 </h3>
               </div>
@@ -206,11 +206,11 @@ const ContactSection = () => {
                       key={item.day}
                       className="border-border hover:bg-muted/50"
                     >
-                      <TableCell className="font-medium text-foreground">
+                      <TableCell className="py-2 text-sm font-medium text-foreground">
                         {item.day}
                       </TableCell>
                       <TableCell
-                        className={`text-right ${
+                        className={`py-2 text-right text-sm ${
                           item.hours === "Geschlossen"
                             ? "text-destructive"
                             : "text-muted-foreground"
@@ -226,16 +226,16 @@ const ContactSection = () => {
           </div>
 
           {/* Right Column: Contact Form */}
-          <div className="rounded-lg border border-border bg-background p-6">
-            <h3 className="mb-2 text-xl font-semibold text-foreground">
+          <div className="rounded-lg border border-border bg-background p-4 md:p-5">
+            <h3 className="mb-1 text-lg font-semibold text-foreground">
               Kontaktformular
             </h3>
-            <p className="mb-6 text-sm text-muted-foreground">
+            <p className="mb-4 text-sm text-muted-foreground">
               Haben Sie Fragen oder Anregungen? Schreiben Sie uns!
             </p>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="name">Name *</Label>
+            <form onSubmit={handleSubmit} className="space-y-3">
+              <div className="space-y-1.5">
+                <Label htmlFor="name" className="text-xs">Name *</Label>
                 <Input
                   id="name"
                   name="name"
@@ -243,38 +243,40 @@ const ContactSection = () => {
                   onChange={handleChange}
                   placeholder="Ihr Name"
                   required
-                  className={`bg-card ${errors.name ? "border-destructive" : ""}`}
+                  className={`h-9 bg-card text-sm ${errors.name ? "border-destructive" : ""}`}
                 />
-                {errors.name && <p className="text-sm text-destructive">{errors.name}</p>}
+                {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="email">E-Mail *</Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="ihre@email.de"
-                  required
-                  className={`bg-card ${errors.email ? "border-destructive" : ""}`}
-                />
-                {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="space-y-1.5">
+                  <Label htmlFor="email" className="text-xs">E-Mail *</Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="ihre@email.de"
+                    required
+                    className={`h-9 bg-card text-sm ${errors.email ? "border-destructive" : ""}`}
+                  />
+                  {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
+                </div>
+                <div className="space-y-1.5">
+                  <Label htmlFor="phone" className="text-xs">Telefon (optional)</Label>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="Ihre Telefonnummer"
+                    className="h-9 bg-card text-sm"
+                  />
+                </div>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="phone">Telefon (optional)</Label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="Ihre Telefonnummer"
-                  className="bg-card"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="message">Nachricht *</Label>
+              <div className="space-y-1.5">
+                <Label htmlFor="message" className="text-xs">Nachricht *</Label>
                 <Textarea
                   id="message"
                   name="message"
@@ -282,10 +284,10 @@ const ContactSection = () => {
                   onChange={handleChange}
                   placeholder="Ihre Nachricht an uns..."
                   required
-                  rows={4}
-                  className={`bg-card ${errors.message ? "border-destructive" : ""}`}
+                  rows={3}
+                  className={`bg-card text-sm ${errors.message ? "border-destructive" : ""}`}
                 />
-                {errors.message && <p className="text-sm text-destructive">{errors.message}</p>}
+                {errors.message && <p className="text-xs text-destructive">{errors.message}</p>}
               </div>
               <Button
                 type="submit"
@@ -300,7 +302,7 @@ const ContactSection = () => {
         </div>
 
         {/* Google Maps */}
-        <div className="mt-12">
+        <div className="mt-8">
           <div className="overflow-hidden rounded-lg border border-border">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.8477647989514!2d9.163547776891977!3d48.83826097132985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4799da3c13c77777%3A0x7f3a4b4b4b4b4b4b!2sAdalbert-Stifter-Stra%C3%9Fe%20101%2C%2070437%20Stuttgart!5e0!3m2!1sde!2sde!4v1699999999999!5m2!1sde!2sde"
